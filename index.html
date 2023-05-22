@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NotePad</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body onload="loadNotes()">
+
+    <!--NOTE SECTION-->
+    <section id="note-section">
+
+        <div class="title">
+            Note Pad
+            <button id="addnewnote" onclick="addNewNote()">+ Add New</button>
+        </div>
+
+        <div id="notes-container"></div>
+        
+    </section>
+
+
+
+<!--SAVE NOTE SECTION-->
+<section id="save-note-section">
+
+      <div>
+    
+           <input id="title-input" placeholder="Title" onkeyup="titleKeyup();"/>
+    
+           <button id="exit-save" onclick="exitSave();">x</button>
+    
+      </div>
+    
+      <div>
+    
+           <textarea id="content-input" placeholder="Type here...." onkeyup="contentKeyup();"></textarea>
+    
+           <button id="save-button">Save Note</button>
+    
+           <button id="save-button-active" onclick="saveNote();">Save Note</button>
+    
+      </div>
+    
+    </section>
+
+
+
+<!--VIEW NOTE SECTION-->
+<section id="view-note-section">
+
+    <div>
+
+        <b id="note-title"></b>
+
+        <button id="exit-view" onclick="exitView();">x</button>
+
+    </div>
+
+    <div>
+
+        <p id="note-content"></p>
+
+        <button id="edit-view" onclick="editView();">Edit Note</button>
+
+    </div>
+
+   </section>
+
+
+
+   <!--EDIT NOTE SECTION-->
+   <section id="edit-note-section">
+
+       <div>
+    
+           <input id="edit-title-input" placeholder="Title" onkeyup="editTitleKeyup();"/>
+    
+           <button id="edit-exit-save" onclick="exitEdit();">x</button>
+    
+       </div>
+    
+       <div>
+    
+           <textarea id="edit-content-input" placeholder="Type here...." onkeyup="editContentKeyup();"></textarea>
+    
+           <button id="edit-save-button">Save Note</button>
+    
+           <button id="edit-save-button-active" onclick="saveEdit();">Save Note</button>
+    
+       </div>
+    
+    </section>
+
+    <script type="text/javascript" src="Js/notepad.js"></script>
+    
+</body>
+
+</html>
