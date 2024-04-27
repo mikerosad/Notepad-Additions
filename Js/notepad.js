@@ -82,16 +82,16 @@ function saveNote() {
 
     var titleKey = 'titlekey' + id;
     var contentKey = 'contentkey' + id;
-    var timestampKey = 'timestampkey' + id;
+    var timestampKey = 'timestampkey' + id; //timestamp
     var noteDiv_id = 'note' + id;
     var deleteBtn_id = 'delete' + id;
     var openBtn_id = 'open' + id;
 
-    var timestamp = new Date().toLocaleString(); // Get current timestamp
+    var timestamp = new Date().toLocaleString(); //current timestamp
 
     localStorage.setItem(titleKey, title.value);
     localStorage.setItem(contentKey, content.value);
-    localStorage.setItem(timestampKey, timestamp); // Save timestamp
+    localStorage.setItem(timestampKey, timestamp); //save timestamp
 
     //NOTEDIV
     var noteDiv = document.createElement('div');
@@ -367,32 +367,30 @@ function loadNotes() {
   }
 
 
-  // Function to toggle dark mode when button is clicked
+  //dark mode
 function toggleDarkModeButton() {
     toggleDarkMode();
     saveDarkModePreference();
 }
 
-// Function to toggle dark mode
+//toggle
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
 }
 
-// Function to save dark mode preference
+//saves "preference"
 function saveDarkModePreference() {
     const darkModeEnabled = document.body.classList.contains('dark-mode');
     localStorage.setItem('darkMode', darkModeEnabled);
 }
 
-// Function to load dark mode preference
+//loads to last chosen "preferenece"
 function loadDarkModePreference() {
     const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
     if (darkModeEnabled) {
         toggleDarkMode();
     }
 }
-
-// Call loadDarkModePreference on page load
 loadDarkModePreference();
 
 
