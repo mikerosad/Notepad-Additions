@@ -72,78 +72,79 @@ else {
 
 } 
 
-
 function saveNote() {
+    if (localStorage.getItem("id") !== null) {
+        id = localStorage.getItem("id");
+        id++;
+    } else {
+        id++;
+    }
 
-        if (localStorage.getItem("id") !== null) {
-            id = localStorage.getItem("id");
-            id++;
-        }
-        else {
-            id++;
-        }
+    var titleKey = 'titlekey' + id;
+    var contentKey = 'contentkey' + id;
+    var timestampKey = 'timestampkey' + id;
+    var noteDiv_id = 'note' + id;
+    var deleteBtn_id = 'delete' + id;
+    var openBtn_id = 'open' + id;
 
-        var titleKey = ('titlekey' + id);
-        var contentKey = ('contentkey' + id);
-        var noteDiv_id = ('note' + id);
-        var deleteBtn_id = ('delete' + id);
-        var openBtn_id = ('open' + id);
+    var timestamp = new Date().toLocaleString(); // Get current timestamp
 
-        localStorage.setItem(titleKey,title.value);
-        localStorage.setItem(contentKey,content.value);
-    
-           //NOTEDIV
-           var noteDiv = document.createElement('div');
-           noteDiv.textContent = localStorage.getItem(titleKey);
-           noteDiv.setAttribute('class','note');
-           noteDiv.setAttribute('id',noteDiv_id);
-           document.getElementById("notes-container").appendChild(noteDiv);
-    
-           //DELETEBTN
-           var deleteBtn = document.createElement('button');
-           deleteBtn.textContent = "Delete";
-           deleteBtn.setAttribute('class','buttons');
-           deleteBtn.setAttribute('id',deleteBtn_id);
-           deleteBtn.onclick = function() {
-    
-            noteDiv.remove();
-            localStorage.removeItem(titleKey);
-            localStorage.removeItem(contentKey);
-    
-           }
-           noteDiv.appendChild(deleteBtn);
-    
-           //OPENBTN
-           var openBtn = document.createElement('button');
-           openBtn.textContent = "Open";
-           openBtn.setAttribute('class','buttons');
-           openBtn.setAttribute('id',openBtn_id);
-           openBtn.onclick = function() {
+    localStorage.setItem(titleKey, title.value);
+    localStorage.setItem(contentKey, content.value);
+    localStorage.setItem(timestampKey, timestamp); // Save timestamp
 
-            id = openBtn_id.charAt(openBtn_id.length-1);
-            console.log(id);
+    //NOTEDIV
+    var noteDiv = document.createElement('div');
+    noteDiv.textContent = localStorage.getItem(titleKey) + ' (' + localStorage.getItem(timestampKey) + ')';
+    noteDiv.setAttribute('class', 'note');
+    noteDiv.setAttribute('id', noteDiv_id);
+    document.getElementById("notes-container").appendChild(noteDiv);
 
-            noteTitle.textContent = localStorage.getItem(titleKey);
-            noteContent.textContent = localStorage.getItem(contentKey);
-        
-            document.getElementById("note-section").style.display = "none";
-            document.getElementById("save-note-section").style.display = "none";
-            document.getElementById("view-note-section").style.display = "block";
-            document.getElementById("edit-note-section").style.display = "none";
-           }
-           noteDiv.appendChild(openBtn);
-    
-           noteTitle.textContent = localStorage.getItem(titleKey);
-           noteContent.textContent = localStorage.getItem(contentKey);
+    //DELETEBTN
+    var deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "Delete";
+    deleteBtn.setAttribute('class', 'buttons');
+    deleteBtn.setAttribute('id', deleteBtn_id);
+    deleteBtn.onclick = function () {
 
-           localStorage.setItem('id',id);
-
-           document.getElementById("note-section").style.display = "none";
-           document.getElementById("save-note-section").style.display = "none";
-           document.getElementById("view-note-section").style.display = "block";
-           document.getElementById("edit-note-section").style.display = "none";
+        noteDiv.remove();
+        localStorage.removeItem(titleKey);
+        localStorage.removeItem(contentKey);
+        localStorage.removeItem(timestampKey); // Remove timestamp
 
     }
+    noteDiv.appendChild(deleteBtn);
+
+    //OPENBTN
+    var openBtn = document.createElement('button');
+    openBtn.textContent = "Open";
+    openBtn.setAttribute('class', 'buttons');
+    openBtn.setAttribute('id', openBtn_id);
+    openBtn.onclick = function () {
+
+        id = openBtn_id.charAt(openBtn_id.length - 1);
+        console.log(id);
+
+        noteTitle.textContent = localStorage.getItem(titleKey);
+        noteContent.textContent = localStorage.getItem(contentKey);
+
+        document.getElementById("note-section").style.display = "none";
+        document.getElementById("save-note-section").style.display = "none";
+        document.getElementById("view-note-section").style.display = "block";
+        document.getElementById("edit-note-section").style.display = "none";
+    }
+    noteDiv.appendChild(openBtn);
+
+    noteTitle.textContent = localStorage.getItem(titleKey);
+    noteContent.textContent = localStorage.getItem(contentKey);
+
+    localStorage.setItem('id', id);
+
+    document.getElementById("note-section").style.display = "none";
+    document.getElementById("save-note-section").style.display = "none";
+    document.getElementById("view-note-section").style.display = "block";
+    document.getElementById("edit-note-section").style.display = "none";
+}
 
 
 
