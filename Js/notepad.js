@@ -364,3 +364,36 @@ function loadNotes() {
        noteDiv.appendChild(openBtn);
 
   }
+
+
+  // Function to toggle dark mode when button is clicked
+function toggleDarkModeButton() {
+    toggleDarkMode();
+    saveDarkModePreference();
+}
+
+// Function to toggle dark mode
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
+
+// Function to save dark mode preference
+function saveDarkModePreference() {
+    const darkModeEnabled = document.body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', darkModeEnabled);
+}
+
+// Function to load dark mode preference
+function loadDarkModePreference() {
+    const darkModeEnabled = localStorage.getItem('darkMode') === 'true';
+    if (darkModeEnabled) {
+        toggleDarkMode();
+    }
+}
+
+// Call loadDarkModePreference on page load
+loadDarkModePreference();
+
+
+
+
